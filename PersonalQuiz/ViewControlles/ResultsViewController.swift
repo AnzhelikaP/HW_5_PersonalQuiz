@@ -47,9 +47,17 @@ class ResultsViewController: UIViewController {
 
 extension ResultsViewController {
     func printType() -> AnimalType {
+        var frequencyOfAnimals: [AnimalType: Int] = [:]
+        let animals = arraysAnimal.map { $0.type }
+        for animal in animals {
+               frequencyOfAnimals[animal] = (frequencyOfAnimals[animal] ?? 0) + 1
+           }
+           
+           let sortedFrequencyOfAnimals = frequencyOfAnimals.sorted { $0.value > $1.value }
+        return sortedFrequencyOfAnimals.first?.key ?? AnimalType.dog
         
         
-        // создаем словарь, где ключ - тип животного,
+     /*   // создаем словарь, где ключ - тип животного,
         // значение - кол-во ответов для этого типа
         var resultsDict = [AnimalType.dog: 0,
                            AnimalType.cat: 0,
@@ -63,7 +71,7 @@ extension ResultsViewController {
         let resultsDictSorted = resultsDict.sorted(by: { $0.value > $1.value })
         // print("\(resultsDictSorted)")
         // выводим первый ключ - тип животного
-        return resultsDictSorted.first?.key ?? AnimalType.dog
+        return resultsDictSorted.first?.key ?? AnimalType.dog */
 
     }
     
